@@ -1,0 +1,1486 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 
+    - primary meta tag
+  -->
+  <title>EduWeb - The Best Program to Enroll for Exchange</title>
+  <meta name="title" content="SkillBloom">
+  <meta name="description" content="This is an education Website">
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - preload images
+  -->
+
+  <link
+  href="e learn.css"
+  rel="stylesheet">
+
+
+
+  <style>
+        /* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: #fff;
+}
+.chatbot-toggler {
+  position: fixed;
+  bottom: 30px;
+  right: 35px;
+  outline: none;
+  border: none;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #724ae8;
+  transition: all 0.2s ease;
+}
+body.show-chatbot .chatbot-toggler {
+  transform: rotate(90deg);
+}
+.chatbot-toggler span {
+  color: #fff;
+  position: absolute;
+}
+.chatbot-toggler span:last-child,
+body.show-chatbot .chatbot-toggler span:first-child  {
+  opacity: 0;
+}
+body.show-chatbot .chatbot-toggler span:last-child {
+  opacity: 1;
+}
+.chatbot {
+  position: fixed;
+  right: 35px;
+  bottom: 90px;
+  width: 420px;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.5);
+  transform-origin: bottom right;
+  box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+              0 32px 64px -48px rgba(0,0,0,0.5);
+  transition: all 0.1s ease;
+}
+body.show-chatbot .chatbot {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+.chatbot header {
+  padding: 16px 0;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  background: #724ae8;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.chatbot header span {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  display: none;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+header h2 {
+  font-size: 1.4rem;
+}
+.chatbot .chatbox {
+  overflow-y: auto;
+  height: 510px;
+  padding: 30px 20px 100px;
+}
+.chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
+  width: 6px;
+}
+.chatbot :where(.chatbox, textarea)::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 25px;
+}
+.chatbot :where(.chatbox, textarea)::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 25px;
+}
+.chatbox .chat {
+  display: flex;
+  list-style: none;
+}
+.chatbox .outgoing {
+  margin: 20px 0;
+  justify-content: flex-end;
+}
+.chatbox .incoming span {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  cursor: default;
+  text-align: center;
+  line-height: 32px;
+  align-self: flex-end;
+  background: #724ae8;
+  border-radius: 4px;
+  margin: 0 10px 7px 0;
+}
+.chatbox .chat p {
+  white-space: pre-wrap;
+  padding: 12px 16px;
+  border-radius: 10px 10px 0 10px;
+  max-width: 75%;
+  color: #fff;
+  font-size: 0.95rem;
+  background: #724ae8;
+}
+.chatbox .incoming p {
+  border-radius: 10px 10px 10px 0;
+}
+.chatbox .chat p.error {
+  color: #721c24;
+  background: #f8d7da;
+}
+.chatbox .incoming p {
+  color: #000;
+  background: #f2f2f2;
+}
+.chatbot .chat-input {
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  padding: 3px 20px;
+  border-top: 1px solid #ddd;
+}
+.chat-input textarea {
+  height: 55px;
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  max-height: 180px;
+  padding: 15px 15px 15px 0;
+  font-size: 0.95rem;
+}
+.chat-input span {
+  align-self: flex-end;
+  color: #724ae8;
+  cursor: pointer;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+  font-size: 1.35rem;
+}
+.chat-input textarea:valid ~ span {
+  visibility: visible;
+}
+
+@media (max-width: 490px) {
+  .chatbot-toggler {
+    right: 20px;
+    bottom: 20px;
+  }
+  .chatbot {
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    border-radius: 0;
+    width: 100%;
+  }
+  .chatbot .chatbox {
+    height: 90%;
+    padding: 25px 15px 100px;
+  }
+  .chatbot .chat-input {
+    padding: 5px 15px;
+  }
+  .chatbot header span {
+    display: block;
+  }
+}
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+    <script src="script.js" defer></script>
+  
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="https://www.pngfind.com/pngs/m/105-1054207_learning-png-logo-machine-learning-png-transparent-png.png" 
+             width="50" height="50" alt="EduWeb logo">
+      </a>
+      
+
+      <nav class="navbar" data-navbar>
+
+        <div class="wrapper">
+          <a href="#" class="logo">
+            <img src="./assets/images/logo.svg" width="162" height="50" alt="EduWeb logo">
+          </a>
+
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="#home" class="navbar-link" data-nav-link>Home</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#about" class="navbar-link" data-nav-link>About</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#courses" class="navbar-link" data-nav-link>Courses</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#blog" class="navbar-link" data-nav-link>Blog</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#" class="navbar-link" data-nav-link>Contact</a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+      <div class="header-actions">
+
+        <button class="header-action-btn" aria-label="toggle search" title="Search">
+          <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <button class="header-action-btn" aria-label="cart" title="Cart">
+          <ion-icon name="cart-outline" aria-hidden="true"></ion-icon>
+
+          <span class="btn-badge">0</span>
+        </button>
+
+        <a href="#" class="btn has-before">
+          <span class="span">Your Workspace</span>
+
+          <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+        </a>
+
+        <button class="header-action-btn" aria-label="open menu" data-nav-toggler>
+          <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="section hero has-bg-image" id="home" aria-label="home"
+      >
+        <div class="container" >
+
+          <div class="hero-content">
+            <h1 class="h1 section-title" style="margin-left:-80px;">
+             <span class="type-animation animating" style="color:cornflowerblue">  Welcome to SkillBloom</span> 
+              Online learning platform
+            </h1>
+
+            <p class="hero-text" style="margin-left:-80px;">
+              Here, your learning journey becomes more creative, empowering you to grow, build, and shine in the world of innovation.
+
+
+            </p>
+
+            <a href="#" class="btn has-before" style="margin-left:-80px;">
+              <span class="span">Find courses</span>
+
+              <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+
+          </div>
+
+          <figure class="hero-banner">
+
+           
+
+          </figure>
+
+        </div>
+      </section>
+
+<section style="margin-left:800px; margin-top:-640px;">
+  <div  style="width:700px; height:470px; ">
+    <img style="width:660px; height:490px; "src="https://img.freepik.com/free-vector/mobile-ui-ux-concept-illustration_114360-11697.jpg?t=st=1743951835~exp=1743955435~hmac=e3e1e06af78b2612d5d0a13457e611a60d2390ee71c28581ae3dc6f933099459&w=1380"  alt="hero banner" class="img-cover">
+  </div>
+
+</section>
+
+
+
+
+
+
+<section style="position:fixed;  z-index: 10; ">
+  <button class="chatbot-toggler">
+    <span class="material-symbols-rounded">comment</span>
+    <span class="material-symbols-outlined">close</span>
+  </button>
+  
+      <div class="chatbot">
+        <header>
+          <h2>Chatbot</h2>
+          <span class="close-btn material-symbols-outlined">close</span>
+        </header>
+        <ul class="chatbox">
+          <li class="chat incoming">
+            <span class="material-symbols-outlined">smart_toy</span>
+            <p>Hi there <br>How can I help you today?</p>
+          </li>
+        </ul>
+        <div class="chat-input">
+          <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+          <span id="send-btn" class="material-symbols-rounded">send</span>
+        </div>
+      </div>
+  
+</section>
+
+      <!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        - #CATEGORY
+      -->
+
+      <section class="section category" aria-label="category">
+        <div class="container">
+
+          <p class="section-subtitle">Categories</p>
+
+          <h2 class="h2 section-title">
+            Explore <span class="span">Courses</span> For Remote Learning.
+          </h2>
+
+          <p class="section-text">
+            Online Classes, Assignments & Project Building
+            Learn at your pace, complete real-world tasks, 
+          </p>
+
+          <ul class="grid-list">
+            <li>
+              <div class="category-card" style="margin-top:-30px; --color: 260, 45%, 25% ">
+">
+
+                <div class="card-icon">
+                  <img src="https://cdn-icons-png.flaticon.com/512/1643/1643231.png" width="90" height="90" loading="lazy"
+                    alt="Non-Degree Programs" class="img">
+                </div>
+
+                <h3 class="h3">
+                  <a href="#" class="card-title">Articles</a>
+                </h3>
+
+                <p class="card-text">
+                  Articles of New Researches
+Discover the latest innovations shaping the future of technology and science..
+                </p>
+
+                <span class="card-badge">New Articles</span>
+
+              </div>
+            </li>
+            <li>
+              <div class="category-card" style="--color: 65, 69%, 51%  "   >
+
+                <div class="card-icon">
+                  <img src="https://www.eccp.com/storage/app/uploads/public/601/23f/9aa/60123f9aaa17c144142030.png" width="90" height="90" loading="lazy"
+                    alt="Non-Degree Programs" class="img">
+                </div>
+
+                <h3 class="h3">
+                  <a href="#" class="card-title">Courses</a>
+                </h3>
+
+                <p class="card-text">
+                  Explore more courses
+                    Unlock new skills, dive deeper, and fuel your journey to success with every click.
+                </p>
+
+                <span class="card-badge">Explore</span>
+
+              </div>
+            </li>
+          
+            <li>
+              <div class="category-card" style="--color: 351, 83%, 61%   ">
+
+                <div class="card-icon">
+                  <img src="https://cdn-icons-png.flaticon.com/512/9750/9750907.png" width="90" height="90" loading="lazy"
+                    alt="Non-Degree Programs" class="img">
+                </div>
+
+                <h3 class="h3">
+                  <a href="#" class="card-title">Mentorship Program</a>
+                </h3>
+
+                <p class="card-text">
+                  One-on-One Mentorship – Get personalized guidance on AI, ML, and emerging tech.
+                </p>
+
+                <span class="card-badge">4 Courses</span>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card" style="--color: 229, 75%, 58%">
+
+                <div class="card-icon">
+                  <img src="https://webstockreview.net/images/computer-icon-png-3.png" width="90" height="90" loading="lazy"
+                    alt="Off-Campus Programs" class="img">
+                </div>
+
+                <h3 class="h3">
+                  <a href="#" class="card-title">Show Your projects</a>
+                </h3>
+
+                <p class="card-text">
+                  Create & Upload – Showcase your projects with detailed descriptions, code, and demos.
+                </p>
+
+                <span class="card-badge">Workplace</span>
+
+              </div>
+            </li>
+
+           
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #ABOUT
+
+        <section> 
+      -->
+          <section style="align-items:center;">   <p class="section-subtitle">Categories</p>
+
+            <h2 class="h2 section-title">
+              Your <span class="span">Teachers</span> Are Here to Help You
+            </h2>
+    
+            <p class="section-text">
+              Get guidance, clear doubts, and grow with support from mentors who care about your success
+            </p></section>
+
+
+
+
+      <section class="section about" id="about" aria-label="about">
+
+
+
+       
+        <div class="container">
+         
+          <figure class="about-banner">
+            <!-- Updated background image with a suitable texture and theme -->
+          
+          </figure>
+      
+          <div class="about-content">
+            <p class="section-subtitle">About Us</p>
+      
+            <h2 class="h2 section-title">
+              Our Teachers & Guides Have Over <span class="span">10 Years of Experience</span>
+            </h2>
+            
+            <p class="section-text">
+              Learn from expert mentors who bring over a decade of experience in skill development and distant learning.
+            </p>
+            
+      
+            <ul class="about-list">
+              <li class="about-item">
+                <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+                <span class="span">Expert Trainers</span>
+              </li>
+      
+              <li class="about-item">
+                <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+                <span class="span">Online Remote Learning</span>
+              </li>
+      
+              <li class="about-item">
+                <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+                <span class="span">Lifetime Access</span>
+              </li>
+            </ul>
+      
+            <!-- Updated shape for added dynamism -->
+            <img src="https://static.vecteezy.com/system/resources/previews/019/153/003/original/3d-minimal-programming-icon-coding-screen-web-development-concept-laptop-with-a-coding-screen-and-a-coding-icon-3d-illustration-png.png" width="100" height="100" loading="lazy" alt="" class="shape about-shape-4">
+          </div>
+      
+        </div>
+        <img style="margin-top:-500px; margin-left:100px; width:730px;" src="https://img.freepik.com/free-vector/male-programmer-working-computer-office-wall-with-hanging-reminder-stickers-developer-creating-new-software-interface-coding-programming-system-administrator-designer-character_575670-1159.jpg?t=st=1743953397~exp=1743956997~hmac=17d2a7efc494c01aa2241d15d8886eff33907e1dffdb685ae0d9d3b0c6dfb2a1&w=1060">
+      
+      </section>
+      
+
+
+
+      <section style="align-items:center;">
+        <p class="section-subtitle">Categories</p>
+      
+        <h2 class="h2 section-title">
+          Join <span class="span">Live Workshops</span> & Hands-On Learning
+        </h2>
+      
+        <p class="section-text">
+          Take part in coding contests, engage in interactive sessions, and boost your skills 
+        </p>
+      </section>
+      
+      <!-- 
+        - #COURSE
+      -->
+      <section style="margin-left:780px; margin-top:100px;">
+        <div class="video-section" style="width:700px; height:400px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">
+          <video autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="https://cdn.pixabay.com/video/2023/10/01/183108-870151713_large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+      
+      <article id="new-section-1" class="new-section-1" style="margin-top:-420px; margin-left:100px;">
+        <div class="new-section-1-text">
+          <h2 class="custom-h2" style="color:#3a0ca3; font-size: 38px; margin-bottom: 20px;">Skill-Based Learning </h2>
+          <p style="color:#333; font-size: 20px; line-height: 1.8; margin-right:800px;">
+            Join exciting <strong>coding contests</strong>, engage in <strong>hands-on learning sessions</strong>, and work on real-world <strong>projects</strong> guided by industry experts.
+            Collaborate, compete, and enhance your practical knowledge with our dynamic and interactive learning environment.
+          </p>
+        </div>
+      </article>
+      
+
+
+      
+
+      <section class="section course" id="courses" aria-label="course" style="margin-top:240px;">
+        
+      <section style="align-items:center;">
+        <p class="section-subtitle">Categories</p>
+      
+        <h2 class="h2 section-title">
+          Join Our <span class="span">Workshops</span> & Explore New Courses
+        </h2>
+      
+        <p class="section-text">
+          Learn by doing! Take part in live workshops, discover exciting new courses, and level up your skills with expert guidance.
+        </p>
+      </section>
+        <div class="container">
+
+     
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="course-card">
+
+                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                  <img src="https://th.bing.com/th/id/OIP.mDPqWkHCDJKGXxBWejx4JgHaFj?rs=1&pid=ImgDetMain" width="370" height="220" loading="lazy"
+                    alt="Build Responsive Real- World Websites with HTML and CSS" class="img-cover">
+                </figure>
+
+                <div class="abs-badge">
+                  <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">3 Weeks</span>
+                </div>
+
+                <div class="card-content">
+
+                  <span class="badge">Beginner</span>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Build Responsive Real- World Websites with HTML and CSS</a>
+                  </h3>
+
+                  <div class="wrapper">
+
+                    <div class="rating-wrapper">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                    <p class="rating-text">(5.0/7 Rating)</p>
+
+                  </div>
+
+                  <data class="price" value="29">₹499.00</data>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <ion-icon name="library-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">8 Lessons</span>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">20 Students</span>
+                    </li>
+
+                  </ul>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="course-card">
+
+                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                  <img src="https://th.bing.com/th/id/OIP.bYJy9hncTutXHGBd78hsvAHaD4?w=1200&h=628&rs=1&pid=ImgDetMain" width="370" height="220" loading="lazy"
+                    alt="Java Programming Masterclass for Software Developers" class="img-cover">
+                </figure>
+
+                <div class="abs-badge">
+                  <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">8 Weeks</span>
+                </div>
+
+                <div class="card-content">
+
+                  <span class="badge">Advanced</span>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Java Programming Masterclass for Software Developers</a>
+                  </h3>
+
+                  <div class="wrapper">
+
+                    <div class="rating-wrapper">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                    <p class="rating-text">(4.5 /9 Rating)</p>
+
+                  </div>
+
+                  <data class="price" value="49">₹999.00</data>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <ion-icon name="library-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">15 Lessons</span>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">35 Students</span>
+                    </li>
+
+                  </ul>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="course-card">
+
+                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                  <img src="https://th.bing.com/th/id/OIP.qSyw0YLMlzJEHK3KQ7HNaAHaD4?rs=1&pid=ImgDetMain" width="370" height="220" loading="lazy"
+                    alt="The Complete Camtasia Course for Content Creators" class="img-cover">
+                </figure>
+
+                <div class="abs-badge">
+                  <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+
+                  <span class="span">8 Weeks</span>
+                </div>
+
+                <div class="card-content">
+
+                  <span class="badge">Intermediate</span>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Join Our Neural Network Workshop</a>
+                  </h3>
+
+                  <div class="wrapper">
+
+                    <div class="rating-wrapper">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                    <p class="rating-text">(4.9 /7 Rating)</p>
+
+                  </div>
+
+                  <data class="price" value="35">₹999.00</data>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <ion-icon name="library-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">13 Lessons</span>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">18 Students</span>
+                    </li>
+
+                  </ul>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <a href="#" class="btn has-before">
+            <span class="span">Browse more courses</span>
+
+            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          </a>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #VIDEO
+      -->
+
+
+
+
+
+
+
+
+      <!-- 
+        - #BLOG
+      -->
+
+      <section class="section blog has-bg-image" id="blog" aria-label="blog"
+        style="background-image: url('https://img.freepik.com/free-vector/abstract-background-banner-modern-design_677411-1516.jpg?t=st=1737195963~exp=1737199563~hmac=b67747bf19d79242899cbec5946679c764dfde04d39518264af378179885a6c2&w=1380'); margin-top:0px;" >
+        <div class="container">
+
+          <p class="section-subtitle">Join exclusive seminars and gain valuable insights.</p>
+
+          <h2 class="h2 section-title">Latest Workshops</h2>
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="blog-card">
+
+                <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+                  <img src="https://th.bing.com/th/id/OIP.OUEX7n9T7eLYqVFxJdumewHaE8?rs=1&pid=ImgDetMain" width="370" height="370" loading="lazy"
+                    alt="Become A Better Blogger: Content Planning" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <a href="#" class="card-btn" aria-label="read more">
+                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                  </a>
+
+                  <a href="#" class="card-subtitle">Online</a>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Become A Better Blogger: Content Planning</a>
+                  </h3>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">Oct 10, 2025</span>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <ion-icon name="chatbubbles-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">Com 09</span>
+                    </li>
+
+                  </ul>
+
+                  <p class="card-text">
+                    Learn how to sharpen your creativity through engaging blog writing and impactful content creation.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="blog-card">
+
+                <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+                  <img src="https://th.bing.com/th/id/OIP._D_dj_q7h_eLe2ZbAEKWVwHaE7?rs=1&pid=ImgDetMain" width="370" height="370" loading="lazy"
+                    alt="Become A Better Blogger: Content Planning" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <a href="#" class="card-btn" aria-label="read more">
+                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                  </a>
+
+                  <a href="#" class="card-subtitle">Online</a>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Show Your Projects and Works</a>
+                  </h3>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">jan 20, 2026</span>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <ion-icon name="chatbubbles-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">Com 09</span>
+                    </li>
+
+                  </ul>
+
+                  <p class="card-text">
+                    Learn how to build your portfolio by sharing your projects and contributing to open-source.
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="blog-card">
+
+                <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
+                  <img src="https://th.bing.com/th/id/OIP.tq8QeCDqIuqqmmjOK7l3fAHaE7?w=2477&h=1651&rs=1&pid=ImgDetMain" width="370" height="370" loading="lazy"
+                    alt="Become A Better Blogger: Content Planning" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <a href="#" class="card-btn" aria-label="read more">
+                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                  </a>
+
+                  <a href="#" class="card-subtitle">Online</a>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Learn robotics through a hands-on workshop </a>
+                  </h3>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">Oct 10, 2021</span>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <ion-icon name="chatbubbles-outline" aria-hidden="true"></ion-icon>
+
+                      <span class="span">Com 09</span>
+                    </li>
+
+                  </ul>
+
+                  <p class="card-text">
+                    Learn how to build, code, and control real robots while mastering core concepts of automation and AI.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <img src="./assets/images/blog-shape.png" width="186" height="186" loading="lazy" alt=""
+            class="shape blog-shape">
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+
+
+
+
+
+
+
+
+
+
+<section style="margin-left:50px; margin-top:300px;">
+  <img width="700px;" src="https://img.freepik.com/free-vector/new-message-concept-landing-page-template_23-2148292734.jpg?t=st=1736946493~exp=1736950093~hmac=f60001d283c3ab8ce0af7a6d50967d213805f48c981a485afd88fba84ad50130&w=1060">
+</section>
+
+
+
+
+<section class="contact" id="contact" style="padding-left:750px; padding-right:40px; margin-top:-610px;">
+  <section style="align-items:center;">
+  
+  
+    <h2 class="h2 section-title">
+       <span class="span">Connect</span> with us
+    </h2>
+  
+    <p class="section-text">
+      Connect with us to stay updated and be part of our community.
+    </p>
+  </section>
+
+
+
+  <div class="col-md-7">
+    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="857d463f-0341-445a-8727-a026e614f952">
+  
+      <div class="row">
+        <div class="col-sm-6">
+          <input type="text" class="form-control" name="name" placeholder="Name" required>
+        </div>
+        <div class="col-sm-6">
+          <input type="email" class="form-control" name="email" placeholder="Email" required>
+        </div>
+        <div class="col-sm-12">
+          <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+        </div>
+      </div>
+  
+      <div class="form-group mt-3">
+        <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+      </div>
+  
+      <button class="btn btn-block btn-primary mt-3" type="submit" style="width: 120px;">Send Now!</button>
+    </form>
+  </div>
+  
+  <!-- JavaScript Validation -->
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      const name = this.name.value.trim();
+      const email = this.email.value.trim();
+      const subject = this.subject.value.trim();
+      const message = this.message.value.trim();
+  
+      if (!name || !email || !subject || !message) {
+        alert('Please fill in all the fields.');
+        e.preventDefault(); // Prevent form submission
+      }
+    });
+  </script>
+  
+</section>
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer" style="background-image: url('./assets/images/footer-bg.png')">
+
+    <div class="footer-top section">
+      <div class="container grid-list">
+
+        <div class="footer-brand">
+
+          <a href="#" class="logo" >
+            <img src="https://png.pngtree.com/png-vector/20230304/ourmid/pngtree-male-avator-icon-vector-png-image_6631112.png" style="margin-top:-30px;" width="162" height="50" alt="EduWeb logo">
+          </a>
+         
+          <p class="footer-brand-text">
+            <strong>Sourin De</strong>,
+            <strong>Sayak Samanta</strong>,
+            <strong>Indranil Acharjee</strong>
+            "Meet Our Team – the passionate minds driving SkillBloom forward.  
+            Together, we innovate, inspire, and empower future talent."
+          </p>
+          
+
+          <div class="wrapper">
+            <span class="span">Add:</span>
+
+            <address class="address">Kolkata Sector-V Road no. 671</address>
+          </div>
+
+          <div class="wrapper">
+            <span class="span">Call:</span>
+
+            <a href="tel:+011234567890" class="footer-link">+91 8348876903</a>
+          </div>
+
+          <div class="wrapper">
+            <span class="span">Email:</span>
+
+            <a href="mailto:info@eduweb.com" class="footer-link">sayaksmnt@gmail.com</a>
+          </div>
+
+        </div>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Online Platform</p>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">About</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Courses</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Instructor</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Events</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Instructor Profile</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Purchase Guide</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Links</p>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Contact Us</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Gallery</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">News & Articles</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">FAQ's</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Sign In/Registration</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Coming Soon</a>
+          </li>
+
+        </ul>
+
+        <div class="footer-list">
+
+          <p class="footer-list-title">Contacts</p>
+
+          <p class="footer-list-text">
+            Enter your email address to register to our newsletter subscription
+          </p>
+
+          <form action="" class="newsletter-form">
+            <input type="email" name="email_address" placeholder="Your email" required class="input-field">
+
+            <button type="submit" class="btn has-before">
+              <span class="span">Subscribe</span>
+
+              <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </form>
+
+          <ul class="social-list">
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-youtube"></ion-icon>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+
+        <p class="copyright">
+          Copyright 2022 All Rights Reserved by <a href="#" class="copyright-link">SkillBloom</a>
+        </p>
+
+      </div>
+    </div>
+
+  </footer>
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back top top" data-back-top-btn>
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script>
+    const addEventOnElem = function (elem, type, callback) {
+        if (elem.length > 1) {
+          for (let i = 0; i < elem.length; i++) {
+            elem[i].addEventListener(type, callback);
+          }
+        } else {
+          elem.addEventListener(type, callback);
+        }
+      }
+      
+      
+      
+      /**
+       * navbar toggle
+       */
+      
+      const navbar = document.querySelector("[data-navbar]");
+      const navTogglers = document.querySelectorAll("[data-nav-toggler]");
+      const navLinks = document.querySelectorAll("[data-nav-link]");
+      const overlay = document.querySelector("[data-overlay]");
+      
+      const toggleNavbar = function () {
+        navbar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      }
+      
+      addEventOnElem(navTogglers, "click", toggleNavbar);
+      
+      const closeNavbar = function () {
+        navbar.classList.remove("active");
+        overlay.classList.remove("active");
+      }
+      
+      addEventOnElem(navLinks, "click", closeNavbar);
+      
+      
+      
+      /**
+       * header active when scroll down to 100px
+       */
+      
+      const header = document.querySelector("[data-header]");
+      const backTopBtn = document.querySelector("[data-back-top-btn]");
+      
+      const activeElem = function () {
+        if (window.scrollY > 100) {
+          header.classList.add("active");
+          backTopBtn.classList.add("active");
+        } else {
+          header.classList.remove("active");
+          backTopBtn.classList.remove("active");
+        }
+      }
+      
+      addEventOnElem(window, "scroll", activeElem);
+  </script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+  // Dark & Light toggle
+
+document.querySelector(".day-night input").addEventListener("change", () => {
+  document.querySelector("body").classList.add("toggle");
+  setTimeout(() => {
+    document.querySelector("body").classList.toggle("light");
+
+    setTimeout(
+      () => document.querySelector("body").classList.remove("toggle"),
+      10
+    );
+  }, 5);
+});
+</script>
+
+
+
+<script>
+  const chatbotToggler = document.querySelector(".chatbot-toggler");
+const closeBtn = document.querySelector(".close-btn");
+const chatbox = document.querySelector(".chatbox");
+const chatInput = document.querySelector(".chat-input textarea");
+const sendChatBtn = document.querySelector(".chat-input span");
+
+let userMessage = null; // Variable to store user's message
+const inputInitHeight = chatInput.scrollHeight;
+
+// API configuration
+const API_KEY = "AIzaSyAOH4F5Qt0iTBCmUO-cASYrdAlApWGWO94"; // Your API key here
+const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`;
+
+const createChatLi = (message, className) => {
+// Create a chat <li> element with passed message and className
+const chatLi = document.createElement("li");
+chatLi.classList.add("chat", `${className}`);
+let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
+chatLi.innerHTML = chatContent;
+chatLi.querySelector("p").textContent = message;
+return chatLi; // return chat <li> element
+}
+
+const generateResponse = async (chatElement) => {
+const messageElement = chatElement.querySelector("p");
+
+// Define the properties and message for the API request
+const requestOptions = {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ 
+    contents: [{ 
+      role: "user", 
+      parts: [{ text: userMessage }] 
+    }] 
+  }),
+}
+
+// Send POST request to API, get response and set the reponse as paragraph text
+try {
+  const response = await fetch(API_URL, requestOptions);
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error.message);
+  
+  // Get the API response text and update the message element
+  messageElement.textContent = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, '$1');
+} catch (error) {
+  // Handle error
+  messageElement.classList.add("error");
+  messageElement.textContent = error.message;
+} finally {
+  chatbox.scrollTo(0, chatbox.scrollHeight);
+}
+}
+
+const handleChat = () => {
+userMessage = chatInput.value.trim(); // Get user entered message and remove extra whitespace
+if (!userMessage) return;
+
+// Clear the input textarea and set its height to default
+chatInput.value = "";
+chatInput.style.height = `${inputInitHeight}px`;
+
+// Append the user's message to the chatbox
+chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+chatbox.scrollTo(0, chatbox.scrollHeight);
+
+setTimeout(() => {
+  // Display "Thinking..." message while waiting for the response
+  const incomingChatLi = createChatLi("Thinking...", "incoming");
+  chatbox.appendChild(incomingChatLi);
+  chatbox.scrollTo(0, chatbox.scrollHeight);
+  generateResponse(incomingChatLi);
+}, 600);
+}
+
+chatInput.addEventListener("input", () => {
+// Adjust the height of the input textarea based on its content
+chatInput.style.height = `${inputInitHeight}px`;
+chatInput.style.height = `${chatInput.scrollHeight}px`;
+});
+
+chatInput.addEventListener("keydown", (e) => {
+// If Enter key is pressed without Shift key and the window 
+// width is greater than 800px, handle the chat
+if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+  e.preventDefault();
+  handleChat();
+}
+});
+
+sendChatBtn.addEventListener("click", handleChat);
+closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+  </script>
+
+</body>
+
+</html>
